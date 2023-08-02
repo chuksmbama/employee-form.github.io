@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Employee Form</title>
+   <link rel="icon" href="favi.png">
+   <style>
+      * {
+         box-sizing: border-box;
+      }
+      body {
+         background-image: url(background.jpeg);
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+      }
+      link {
+         background: burlywood;
+      }
+      #box {
+         display: none;
+      }
+      h1 {
+         color: burlywood;
+         text-align: center;
+      }
+      label {
+         color: burlywood;
+         font-size: 18px;
+      }
+      .box {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         background: rgba(0, 0, 0, 0.76);
+         width: 500px;
+         height: 650px;
+         padding: 20px;
+         border-radius: 20px;
+         box-shadow: 5px 5px 40px rgb(201, 183, 161);
+      }
+      #nameInput, #ageInput, #locationOption, #departmentOption, #dobInput{
+         float: left;
+         width: 100%;
+      }
+      #name {
+         height: 50px;
+         width: 100%;
+         border: none;
+         border-bottom: 2px solid burlywood;
+         outline: none;
+         padding: 0 0 0 15px;
+         background: transparent;
+         margin-bottom: 10px;
+         color: rgb(188, 126, 56);
+         font-size: 14px;
+         font-weight: bold;
+      }
+      #name:hover {
+         border-bottom: 2px solid rgb(155, 120, 74);
+      }
+      #age {
+         height: 50px;
+         width: 100%;
+         border: none;
+         border-bottom: 2px solid burlywood;
+         outline: none;
+         padding: 0 0 0 15px;
+         background: transparent;
+         margin-bottom: 10px;
+         color: rgb(188, 126, 56);
+         font-size: 14px;
+         font-weight: bold;
+      }
+      #age:hover {
+         border-bottom: 2px solid rgb(155, 120, 74);
+      }
+      #location {
+         height: 45px;
+         width: 100%;
+         border: none;
+         border-bottom: 2px solid burlywood;
+         color: rgb(188, 126, 56);
+         outline: none;
+         padding: 0 0 0 15px;
+         background: transparent;
+         margin-bottom: 10px;
+         font-size: 14px;
+         font-weight: bold;
+      }
+      #location:hover {
+         border-bottom: 2px solid rgb(155, 120, 74);
+      }
+      #department {
+         width: 100%;
+         height: 50px;
+         border: none;
+         border-bottom: 2px solid burlywood;
+         outline: none;
+         padding: 0 0 0 15px;
+         background: transparent;
+         margin-bottom: 10px;
+         color: rgb(188, 126, 56);
+         font-size: 14px;
+         font-weight: bold;
+      }
+      #department:hover {
+         border-bottom: 2px solid rgb(155, 120, 74);
+      }
+      #dob {
+         height: 45px;
+         width: 100%;
+         border: none;
+         border-bottom: 2px solid burlywood;
+         outline: none;
+         padding: 0 0 0 15px;
+         background: transparent;
+         margin-bottom: 10px;
+         color: rgb(188, 126, 56);
+         font-size: 14px;
+         font-weight: bold;
+      }
+      #dob:hover {
+         border-bottom: 2px solid rgb(155, 120, 74);
+      }
+      #genderOption {
+         float: left;
+         width: 100%;
+         margin-bottom: 25px;
+         color: rgb(188, 126, 56);
+      }
+      #reset, #submit {
+         float: left;
+         width: 45%;
+         margin-bottom: 20px;
+      }
+      #submit {
+         color: white;
+         background: rgb(18, 208, 18);
+         border: none;
+         cursor: pointer;
+         padding: 20px;
+         border-radius: 10px;
+         font-weight: bold;
+         text-transform: uppercase;
+      }
+      #submit:hover {
+         background: rgb(12, 165, 12);
+      }
+      #reset {
+         color: white;
+         background: rgb(208, 18, 18);
+         border: none;
+         cursor: pointer;
+         padding: 20px;
+         margin-right: 40px;
+         border-radius: 10px;
+      }
+      #reset:hover {
+         background: rgb(160, 17, 17);
+      }
+      #name, #location {
+         margin-right: 47px;
+      }
+      
+      #dob {
+         margin-bottom: 20px;
+      }
+      .close {
+         position: absolute;
+         right: 35px;
+         top: 35px;
+         font-size: 40px;
+         font-weight: bold;
+         cursor: pointer;
+         color: rgb(255, 0, 0);
+      }
+      .close:hover {
+         color: #9d2f27;
+      }
+      #start {
+         cursor: pointer;
+         background: rgb(130, 77, 7);
+         color: rgb(255, 255, 255);
+         padding: 20px 50px;
+         position: absolute;
+         top: 10%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         border: none;
+         border-radius: 30px;
+         font-size: 24px;
+         text-align: center;
+         
+      }
+      #start:hover {
+         background: rgb(79, 46, 2);
+      }
+      #formData {
+         color: rgb(188, 126, 56);
+         font-weight: bold;
+      }
+   </style>
+</head>
+<body>
+   <button onclick="start()" id="start"><b>CLICK HERE</b></button>
+   <div id="box" class="box">
+      <form id="employeeForm">
+         <div class="container">
+            <h1>EMPLOYEE FORM</h1>
+            <span onclick="closeForm()" class="close" title="Close Form">&times;</span>
+            <div id="nameInput">
+               <label for="name"><b>Name</b></label>
+               <input type="text" required id="name" name="name" onfocus="this.value=''">
+            </div>
+            <div id="ageInput">
+               <label for="age"><b>Age</b></label>
+               <input type="number" required id="age" name="age" onfocus="this.value=''">
+            </div>
+            <div id="locationOption">
+               <label for="location"><b>Location</b></label>
+               <select name="location" id="location" required>
+                  <option>North America</option>
+                  <option>South America</option>
+                  <option>Africa</option>
+                  <option>Asia</option>
+                  <option>Europe</option>
+                  <option>Antarctica</option>
+                  <option>Australia</option>
+                  
+               </select>
+            </div>
+            <div id="departmentOption">
+               <label for="department"><b>Department</b></label>
+               <select name="department" id="department" required>
+                  <option>Accounting</option>
+                  <option>ICT</option>
+                  <option>Sales</option>
+                  <option>Marketing</option>
+                  <option>Management</option>
+                  <option>Customer Care</option>
+                  <option>Hr</option>
+               </select>
+            </div>
+            <div id="dobInput">
+               <label for="dob"><b>Date Of Birth</b></label>
+               <input type="date" id="dob" name="dob" required onfocus="this.value=''">
+            </div>
+            <div id="genderOption">
+               <label for="gender"><b>Gender</b></label>
+               <td><input type="radio" name="gender" value="male"><b>Male</b></td>
+               <td><input type="radio" name="gender" value="female"><b>Female</b></td>
+            </div>
+            <button type="reset"id="reset" onclick="clearVal()"><b>RESET</b></button>
+            <input type="submit" value="Submit" id="submit">
+            <div id="formData">  
+            </div>
+         </div>
+      </form>
+   </div>
+   <script>
+      const form = document.getElementById('employeeForm');
+      const formData = document.getElementById('formData');
+
+      form.onsubmit = function(event) {
+         event.preventDefault();
+         const data = new FormData(form);
+         let html = "<p><strong>Name:</strong> " + data.get("name") + "</p>";
+      html += "<p><strong>Age:</strong> " + data.get("age") + " years</p>";
+      html += "<p><strong>Location:</strong> " + data.get("location") + "</p>";
+      html += "<p><strong>Department:</strong> " + data.get("department") + "</p>";
+      html += "<p><strong>Gender:</strong> " + data.get("gender") + "</p>";
+      html += "<p><strong>Date of Birth:</strong> " + data.get("dob") + "</p>";
+
+      formData.innerHTML = html;
+      const formHeight = document.getElementById('box');
+      formHeight.style.height = '850px'
+    };
+
+
+
+
+
+      function clearVal() {
+         const formHeight = document.getElementById('box');
+         formHeight.style.height = '650px'
+
+         dataHide = document.getElementById('formData')
+         dataHide.style.display = 'none'
+      }
+
+      
+
+      function start() {
+         const displayForm = document.getElementById('box');
+         displayForm.style.display = 'block'
+         const startButton = document.getElementById('start');
+         startButton.style.display = 'none'
+      }
+
+
+
+      function closeForm() {
+         const displayForm = document.getElementById('box');
+         displayForm.style.display = 'none'
+         const startButton = document.getElementById('start');
+         startButton.style.display = 'block'
+      }
+   </script>
+</body>
+</html>
